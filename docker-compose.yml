@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    ports:
+      - "4567:4567"
+    volumes:
+      - .:/app
+    depends_on:
+      - couchdb
+
+  couchdb:
+    image: couchdb:3.3.3
+    ports:
+      - "5984:5984"
+    environment:
+      COUCHDB_USER: admin
+      COUCHDB_PASSWORD: password
